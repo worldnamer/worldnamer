@@ -3,8 +3,8 @@ import Vuetify from 'vuetify'
 import Vuex from 'vuex'
 
 import { router } from './router'
-import { store } from './store'
-import App from '../components/App.vue'
+import { store } from './vuex/store'
+import App from './components/App.vue'
 
 import 'vuetify/dist/vuetify.min.css'
 
