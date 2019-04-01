@@ -1,0 +1,75 @@
+.splash {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 117px;
+  border: 1px solid white;
+
+  .logo {
+    display: flex;
+    justify-content: center; /* vertical */
+    margin-top: 25vh;
+  }
+
+  a, a:link, a:visited {
+    text-decoration: none;
+    display: inline-block;
+    color: black !important;
+  }
+
+  .first-letter {
+    color: steelblue;
+  }
+
+  .short-logo {
+    display: inline-block;
+    color: white;
+    position: relative;
+    left: -27px;
+    width: 0px;
+    transition: all 0.2s ease-in;
+    z-index: -1;
+
+    &:hover {
+      color: steelblue;
+    }
+  }
+
+  .short-logo-hover {
+    display: inline-block;
+    color: black;
+    position: relative;
+    left: -27px;
+    width: 665px;
+    transition: all 0.3s ease-in;
+    z-index: -1;
+
+    &:hover {
+      color: steelblue;
+    }
+  }
+
+  .links {
+    display: flex;
+    justify-content: center; /* vertical */
+    font-size: 16px;
+    color: white;
+    margin-bottom: 25vh;
+    a, a:link, a:visited {
+      color: white !important;
+      margin: 0px 50px;
+    }
+  }
+
+  .links-hover {
+    display: flex;
+    justify-content: center; /* vertical */
+    font-size: 16px;
+    margin-bottom: 25vh;
+    a, a:link, a:visited {
+      margin: 0px 50px;
+    }
+    a:hover {
+      color: gray !important;
+    }
+    transition: all 0.3s ease-in;
+  }
+}

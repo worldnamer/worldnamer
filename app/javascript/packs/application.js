@@ -1,13 +1,16 @@
 import Vue from 'vue/dist/vue.esm'
-import App from '../components/app.vue'
+import Vuex from 'vuex'
+
+import { router } from './router'
+import { store } from './store'
+import App from '../components/App.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.body.appendChild(document.createElement('app'))
+  document.body.appendChild(document.createElement('app'));
   const app = new Vue({
-    el: 'app',
-    template: '<App/>',
-    components: { App }
-  })
-
-  console.log(app)
-})
+    render: h => h(App),
+    router,
+    store,
+    el: '#app'
+  });
+});
