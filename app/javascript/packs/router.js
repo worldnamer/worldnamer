@@ -1,4 +1,4 @@
-import Vue from 'vue/dist/vue.esm'
+import Vue from 'vue'
 import Router from 'vue-router'
 
 import LandingPage from '../components/LandingPage.vue'
@@ -11,7 +11,7 @@ export const router = new Router({
   routes: [
     { path: '/', component: LandingPage },
     { path: '/login', component: LoginPage },
-    
+
     // otherwise redirect to home
     { path: '*', redirect: LandingPage }
   ]

@@ -1,7 +1,6 @@
 .splash {
   font-family: 'Orbitron', sans-serif;
   font-size: 117px;
-  border: 1px solid white;
 
   .logo {
     display: flex;
@@ -17,41 +16,34 @@
 
   .first-letter {
     color: steelblue;
+    z-index: 1;
   }
 
   .short-logo {
     display: inline-block;
+    opacity: 0;
     color: white;
     position: relative;
     left: -27px;
     width: 0px;
-    transition: all 0.2s ease-in;
-    z-index: -1;
-
-    &:hover {
-      color: steelblue;
-    }
+    transition: all 0.3s ease-in;
+    z-index: 0;
   }
 
   .short-logo-hover {
     display: inline-block;
-    color: black;
     position: relative;
     left: -27px;
     width: 665px;
     transition: all 0.3s ease-in;
-    z-index: -1;
-
-    &:hover {
-      color: steelblue;
-    }
+    z-index: 0;
   }
 
   .links {
     display: flex;
     justify-content: center; /* vertical */
     font-size: 16px;
-    color: white;
+    opacity: 0;
     margin-bottom: 25vh;
     a, a:link, a:visited {
       color: white !important;
@@ -71,5 +63,9 @@
       color: gray !important;
     }
     transition: all 0.3s ease-in;
+  }
+
+  .v--modal-overlay {
+    font-size: 16px;
   }
 }
