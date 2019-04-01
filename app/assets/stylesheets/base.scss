@@ -5,12 +5,11 @@
   .logo {
     display: flex;
     justify-content: center; /* vertical */
-    margin-top: 25vh;
+    padding-top: 25vh;
   }
 
   a, a:link, a:visited {
     text-decoration: none;
-    display: inline-block;
     color: black !important;
   }
 
@@ -20,48 +19,39 @@
   }
 
   .short-logo {
-    display: inline-block;
     opacity: 0;
-    color: white;
     position: relative;
     left: -27px;
     width: 0px;
     transition: all 0.3s ease-in;
-    z-index: 0;
   }
 
   .short-logo-hover {
-    display: inline-block;
     position: relative;
     left: -27px;
     width: 665px;
     transition: all 0.3s ease-in;
-    z-index: 0;
   }
 
   .links {
-    display: flex;
-    justify-content: center; /* vertical */
-    font-size: 16px;
     opacity: 0;
-    margin-bottom: 25vh;
-    a, a:link, a:visited {
-      color: white !important;
-      margin: 0px 50px;
-    }
+    font-size: 16px;
+    padding-bottom: 25vh;
   }
 
   .links-hover {
     display: flex;
     justify-content: center; /* vertical */
     font-size: 16px;
-    margin-bottom: 25vh;
+    padding-bottom: 25vh;
+
     a, a:link, a:visited {
       margin: 0px 50px;
     }
     a:hover {
       color: gray !important;
     }
+
     transition: all 0.3s ease-in;
   }
 
