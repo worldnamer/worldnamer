@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  export default {   
+  export default {
     data: function () {
       return {
         hover: false,
@@ -53,7 +53,7 @@
       submit: function() {
         this.dialog=false; 
         this.hover=true;
-        // console.log(this.password);
+        console.log(this.$store.state.sessionKey);
       }
     }
   }
