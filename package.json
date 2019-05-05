@@ -3,7 +3,10 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "^4.0.2",
+    "axios": "^0.18.0",
+    "material-design-icons": "^3.0.1",
     "vue": "^2.6.10",
+    "vue-axios": "^2.1.4",
     "vue-loader": "^15.7.0",
     "vue-router": "^3.0.2",
     "vue-template-compiler": "^2.6.10",

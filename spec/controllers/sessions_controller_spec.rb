@@ -43,7 +43,7 @@ RSpec.describe Api::SessionsController, type: :request do
     end
 
     it 'rejects improper authentication' do
-      post api_sessions_path, headers: { 'Authorization' => Base64.encode64('worldnamer:badpassword') }
+      post api_sessions_path, headers: { 'Authorization' => "Basic #{Base64.encode64('worldnamer:badpassword')}" }
 
       expect(response.code).to eq('401')
       expect(response.headers['WWW-Authenticate']).to eq('Basic realm="api"')
@@ -58,7 +58,7 @@ RSpec.describe Api::SessionsController, type: :request do
 
     it 'accepts proper authentication' do
       user = create :user
-      post api_sessions_path, headers: { 'Authorization' => Base64.encode64("#{user.username}:#{user.password}") }
+      post api_sessions_path, headers: { 'Authorization' => "Basic #{Base64.encode64(user.username + ':' + user.password)}" }
 
       expect(response.code).to eq('200')
       
@@ -70,8 +70,8 @@ RSpec.describe Api::SessionsController, type: :request do
 
     it 'logging in twice produces two sessions' do
       user = create :user
-      post api_sessions_path, headers: { 'Authorization' => Base64.encode64("#{user.username}:#{user.password}") }
-      post api_sessions_path, headers: { 'Authorization' => Base64.encode64("#{user.username}:#{user.password}") }
+      post api_sessions_path, headers: { 'Authorization' => "Basic #{Base64.encode64(user.username + ':' + user.password)}" }
+      post api_sessions_path, headers: { 'Authorization' => "Basic #{Base64.encode64(user.username + ':' + user.password)}" }
 
       expect(Session.count).to eq(2)
     end

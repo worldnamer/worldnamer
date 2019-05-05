@@ -10,11 +10,19 @@ module Api
       authenticated = false
 
       authentication = request.headers['Authorization']
-      if authentication.present?
-        username, password = Base64.decode64(authentication).split(':')
+      begin
+        if authentication.present?
+          Rails.logger.error("auth: #{authentication}")
 
-        user = User.find_by(username: username)
-        authenticated = true if user && user.authenticate(password)
+          authentication = authentication[authentication.index('Basic ')+6, 100]
+          username, password = Base64.decode64(authentication).split(':')
+
+          Rails.logger.error("un: #{username} pw: #{password}")
+
+          user = User.find_by(username: username)
+          authenticated = true if user && user.authenticate(password)
+        end
+      rescue StandardError
       end
 
       if authenticated

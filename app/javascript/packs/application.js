@@ -7,8 +7,11 @@ import Vuetify from 'vuetify'
 import App from './components/App.vue'
 
 import 'vuetify/dist/vuetify.min.css'
-
 Vue.use(Vuetify)
+
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+Vue.use(VueAxios, axios)
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
