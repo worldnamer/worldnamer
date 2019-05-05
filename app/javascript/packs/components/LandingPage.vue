@@ -53,7 +53,10 @@
       submit: function() {
         this.dialog=false; 
         this.hover=true;
-        console.log(this.$store.state.sessionKey);
+
+        // This should be replaced with a login.
+        this.$store.state.sessionKey = 'dashboard';
+        this.$router.push('/dashboard');
       }
     }
   }
