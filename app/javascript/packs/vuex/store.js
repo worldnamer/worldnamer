@@ -3,6 +3,8 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex);
 
+import axios from 'axios'
+
 export const store = new Vuex.Store({
   state: {
     sessionKey: null
@@ -26,6 +28,17 @@ export const store = new Vuex.Store({
     logOut: (state) => {
       sessionStorage.removeItem('sessionKey');
       state.sessionKey = null;
+    },
+    logIn: (state, password) => {
+      axios.post('/api/sessions', { headers: { 'Authorization': 'Basic ' + btoa('worldnamer:' + password) } })
+        .then((response) => {
+          sessionStorage.setItem('sessionKey', response.data.key);
+          state.sessionKey = response.data.key;
+          Vue.router.push('/dashboard');
+        })
+        .catch((response) => {
+          console.log(response);
+        });
     }
   },
   actions: {

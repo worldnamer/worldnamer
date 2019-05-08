@@ -2,6 +2,8 @@ import Vue from 'vue'
 import { store } from './vuex/store'
 import { router } from './router'
 
+Vue.router = router;
+
 import Vuetify from 'vuetify'
 
 import App from './components/App.vue'

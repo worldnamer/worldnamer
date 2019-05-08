@@ -54,15 +54,7 @@
         this.dialog=false; 
         this.hover=true;
 
-        this.axios.post('/api/sessions', { headers: { 'Authorization': 'Basic ' + btoa('worldnamer:' + this.password) } })
-          .then((response) => {
-            sessionStorage.setItem('sessionKey', response.data.key);
-            this.$store.state.sessionKey = response.data.key;
-            this.$router.push('/dashboard');
-          })
-          .catch((response) => {
-            console.log(response);
-          });
+        this.$store.commit('logIn', this.password);
       }
     }
   }
