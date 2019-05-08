@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :api do
-    resources :sessions, only: [:create, :index]
+    resources :sessions, only: [:create]
   end
 
   match '*path', to: 'landing#index', via: [:get, :post, :put, :patch, :delete]
