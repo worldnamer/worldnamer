@@ -5,9 +5,13 @@ Vue.use(Vuex);
 
 import axios from 'axios'
 
+import StickiesAPI from '../services/api/stickies'
+
 export const store = new Vuex.Store({
   state: {
-    sessionKey: null
+    sessionKey: null,
+    stickies: [],
+    timeout: null
   },
   getters: {
     loggedIn: (state) => {
@@ -22,7 +26,7 @@ export const store = new Vuex.Store({
 
         return false;
       }
-    }
+    },
   },
   mutations: {
     logOut: (state) => {
@@ -39,6 +43,19 @@ export const store = new Vuex.Store({
         .catch((response) => {
           console.log(response);
         });
+    },
+
+    loadStickies: (state) => {
+      StickiesAPI.loadStickies();
+    },
+    addSticky: (state) => {
+      StickiesAPI.createSticky();
+    },
+    removeSticky: (state, sticky) => {
+      StickiesAPI.deleteSticky(sticky);
+    },
+    updateSticky: (state, sticky) => {
+      StickiesAPI.updateSticky(sticky);
     }
   },
   actions: {
