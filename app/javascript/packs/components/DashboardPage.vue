@@ -1,6 +1,6 @@
 <template>
   <v-layout row wrap pa-2>
-    <v-flex xs3 pa-2 v-for="sticky in stickies">
+    <v-flex xs3 pa-2 v-for="sticky in stickies" v-bind:key="sticky.id">
       <v-card height="300" max-height="300" style="overflow: hidden;" :color="sticky.color" elevation="4">
         <v-container style="height: 250px;">
           <textarea v-model="sticky.text" style="width: 100%; height: 100%; resize: none;" v-on:keyup="$store.commit('updateSticky', sticky)"></textarea>
@@ -23,11 +23,6 @@
 
 <script>
   export default {
-    data: function () {
-      return {
-        timeout: null,
-      };
-    },
     computed: {
       stickies: {
         get() {

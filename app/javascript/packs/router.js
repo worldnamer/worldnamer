@@ -4,6 +4,7 @@ import { store } from './vuex/store'
 
 import LandingPage from './components/LandingPage.vue'
 import DashboardPage from './components/DashboardPage.vue'
+import ProjectsPage from './components/ProjectsPage.vue'
 
 Vue.use(Router);
 
@@ -12,6 +13,7 @@ export const router = new Router({
   routes: [
     { path: '/', component: LandingPage },
     { path: '/dashboard', component: DashboardPage },
+    { path: '/projects', component: ProjectsPage },
 
     // otherwise redirect to home
     { path: '*', redirect: LandingPage }
