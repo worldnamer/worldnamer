@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :stickies, only: [:create, :index, :destroy, :update]
   end
 
-  match '*path', to: 'landing#index', via: [:get, :post, :put, :patch, :delete]
   match '/', to: 'landing#index', via: [:get, :post, :put, :patch, :delete]
+  match '/dashboard', to: 'landing#index', via: [:get, :post, :put, :patch, :delete]
+  match '/projects', to: 'landing#index', via: [:get, :post, :put, :patch, :delete]
 end
