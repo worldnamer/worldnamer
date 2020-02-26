@@ -34,7 +34,7 @@ export const store = new Vuex.Store({
       state.sessionKey = null;
     },
     logIn: (state, password) => {
-      axios.post('/api/sessions', { headers: { 'Authorization': 'Basic ' + btoa('worldnamer:' + password) } })
+      axios.post('/api/sessions', null, { headers: { 'Authorization': 'wnauth ' + btoa('worldnamer:' + password) } })
         .then((response) => {
           sessionStorage.setItem('sessionKey', response.data.key);
           state.sessionKey = response.data.key;

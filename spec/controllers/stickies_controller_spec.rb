@@ -6,12 +6,12 @@ RSpec.describe Api::StickiesController, type: :request do
       get api_stickies_path
 
       expect(response.code).to eq('401')
-      expect(response.headers['WWW-Authenticate']).to eq('Basic realm="api"')
+      expect(response.headers['WWW-Authenticate']).to eq('wn realm="api"')
     end
 
     it 'returns no stickies if none exist' do
       session = create :session
-      get api_stickies_path, headers: { 'Authorization' => "wnauth #{session.key}" }
+      get api_stickies_path, headers: { 'Authorization' => "wnsession #{session.key}" }
 
       expect(response.code).to eq('200')
 
@@ -23,7 +23,7 @@ RSpec.describe Api::StickiesController, type: :request do
       session = create :session
       sticky = create :sticky
 
-      get api_stickies_path, headers: { 'Authorization' => "wnauth #{session.key}" }
+      get api_stickies_path, headers: { 'Authorization' => "wnsession #{session.key}" }
 
       expect(response.code).to eq('200')
 
@@ -40,13 +40,13 @@ RSpec.describe Api::StickiesController, type: :request do
       post api_stickies_path
 
       expect(response.code).to eq('401')
-      expect(response.headers['WWW-Authenticate']).to eq('Basic realm="api"')
+      expect(response.headers['WWW-Authenticate']).to eq('wn realm="api"')
     end
 
     it 'creates blank stickies' do
       session = create :session
 
-      post api_stickies_path, headers: { 'Authorization' => "wnauth #{session.key}" }
+      post api_stickies_path, headers: { 'Authorization' => "wnsession #{session.key}" }
 
       expect(response.code).to eq('200')
 
@@ -62,14 +62,14 @@ RSpec.describe Api::StickiesController, type: :request do
       delete api_sticky_path(1)
 
       expect(response.code).to eq('401')
-      expect(response.headers['WWW-Authenticate']).to eq('Basic realm="api"')
+      expect(response.headers['WWW-Authenticate']).to eq('wn realm="api"')
     end
 
     it 'removes a sticky' do
       session = create :session
       sticky = create :sticky
 
-      delete api_sticky_path(sticky.id), headers: { 'Authorization' => "wnauth #{session.key}" }
+      delete api_sticky_path(sticky.id), headers: { 'Authorization' => "wnsession #{session.key}" }
 
       expect(response.code).to eq('204')
       expect(Sticky.count).to eq(0)
@@ -78,7 +78,7 @@ RSpec.describe Api::StickiesController, type: :request do
     it 'succeeds even if the sticky does not exist' do
       session = create :session
 
-      delete api_sticky_path(1), headers: { 'Authorization' => "wnauth #{session.key}" }
+      delete api_sticky_path(1), headers: { 'Authorization' => "wnsession #{session.key}" }
 
       expect(response.code).to eq('204')
       expect(Sticky.count).to eq(0)
@@ -90,7 +90,7 @@ RSpec.describe Api::StickiesController, type: :request do
       put api_sticky_path(1)
 
       expect(response.code).to eq('401')
-      expect(response.headers['WWW-Authenticate']).to eq('Basic realm="api"')
+      expect(response.headers['WWW-Authenticate']).to eq('wn realm="api"')
     end
 
     it 'updates an existing sticky' do
@@ -100,7 +100,7 @@ RSpec.describe Api::StickiesController, type: :request do
       updated_text = 'new text'
       updated_color = 'red lighten-4'
 
-      put api_sticky_path(sticky.id), params: { text: updated_text, color: updated_color }, headers: { 'Authorization' => "wnauth #{session.key}" }
+      put api_sticky_path(sticky.id), params: { text: updated_text, color: updated_color }, headers: { 'Authorization' => "wnsession #{session.key}" }
       sticky.reload
 
       expect(response.code).to eq('204');
@@ -114,7 +114,7 @@ RSpec.describe Api::StickiesController, type: :request do
       updated_text = 'new text'
       updated_color = 'red lighten-4'
 
-      put api_sticky_path(1), params: { text: updated_text, color: updated_color }, headers: { 'Authorization' => "wnauth #{session.key}" }
+      put api_sticky_path(1), params: { text: updated_text, color: updated_color }, headers: { 'Authorization' => "wnsession #{session.key}" }
 
       expect(response.code).to eq('404');
     end

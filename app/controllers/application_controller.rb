@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   def authenticate
     read_authentication
     unless valid_authentication
-      headers['WWW-Authenticate'] = 'Basic realm="api"'
+      headers['WWW-Authenticate'] = 'wn realm="api"'
       head :unauthorized
     end
   end
@@ -21,15 +21,13 @@ class ApplicationController < ActionController::Base
   def read_authentication
     authentication = request.headers['Authorization']
     if authentication.present?
-      Rails.logger.error("auth: #{authentication}")
-
-      basic_idx = authentication.index('Basic ')
+      basic_idx = authentication.index('wnauth ')
       @authentication = if (basic_idx)
-        ['Basic', Base64.decode64(authentication[basic_idx+6, 100]).strip]
+        ['wnauth', Base64.decode64(authentication[basic_idx+6, 100]).strip]
       else
-        session_idx = authentication.index('wnauth ')
+        session_idx = authentication.index('wnsession ')
         if (session_idx)
-          ['wnauth', authentication[session_idx+6, 100].strip]
+          ['wnsession', authentication[session_idx+9, 100].strip]
         end
       end
     end
@@ -40,12 +38,12 @@ class ApplicationController < ActionController::Base
     return unless @authentication && @authentication[0] && @authentication[1]
 
     auth_mode = @authentication[0]
-    if auth_mode == 'Basic'
+    if auth_mode == 'wnauth'
       username, password = @authentication.last.split(':')
 
       @user = User.find_by(username: username)
       return true if @user && @user.authenticate(password)
-    elsif auth_mode == 'wnauth'
+    elsif auth_mode == 'wnsession'
       @session = Session.find_by(key: @authentication[1])
       return true if @session.present?
     end
