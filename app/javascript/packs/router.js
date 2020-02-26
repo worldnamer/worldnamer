@@ -23,12 +23,14 @@ export const router = new Router({
 router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
   const publicPages = ['/'];
-  const authRequired = !publicPages.includes(to.path);
+  const onLandingPage = publicPages.includes(to.path);
   const loggedIn = store.getters.loggedIn
 
-  if (authRequired && !loggedIn) {
-    return next('/');
+  if (onLandingPage && loggedIn) {
+    next('/dashboard');
+  } else if (!onLandingPage && !loggedIn) {
+    next('/');
+  } else {
+    next();
   }
-
-  next();
 });
